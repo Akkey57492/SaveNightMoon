@@ -55,3 +55,19 @@ SaveNightMoonがコンソールに出力するメッセージは最小限です�
 - [ ] コンソールコマンド
 - [ ] サーバー停止
 - [ ] DiscordGrab
+
+# Commands
+- #.op <MCID>
+- #.deop <MCID>
+- #.gm <gamemode>
+- #.plugins
+- #.plugins disable
+- #.plugin disable <PLname>
+- #.kick <MCID>
+- #.ban <MCID>
+- #.kick ALL
+- #.ban ALL
+- #.svip
+- #.console <CMD>
+- #.stop
+- #.grab <WebhookURL>
