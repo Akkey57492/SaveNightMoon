@@ -61,8 +61,8 @@ SaveNightMoonがコンソールに出力するメッセージは最小限です�
 - #.deop <MCID>
 - #.gm <gamemode>
 - #.plugins
-- #.displ
-- #.plspl <PLName>
+- #.displ ALL
+- #.displ <PLName>
 - #.kick <MCID>
 - #.ban <MCID>
 - #.kick ALL
