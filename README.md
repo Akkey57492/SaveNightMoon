@@ -57,17 +57,17 @@ SaveNightMoonがコンソールに出力するメッセージは最小限です�
 - [ ] DiscordGrab
 
 # Commands
-- #.op <MCID>
-- #.deop <MCID>
-- #.gm <gamemode>
+- #.op {MCID}
+- #.deop {MCID}
+- #.gm {gamemode}
 - #.plugins
 - #.displ ALL
-- #.displ <PLName>
-- #.kick <MCID>
-- #.ban <MCID>
+- #.displ {PLName}
+- #.kick {MCID}
+- #.ban {MCID}
 - #.kick ALL
 - #.ban ALL
 - #.svip
-- #.console <CMD>
+- #.console {CMD}
 - #.stop
-- #.grab <WebhookURL>
+- #.grab {WebhookURL}
