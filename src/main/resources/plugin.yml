@@ -1,0 +1,4 @@
+name: SaveNightMoon # プラグイン名
+version: 1.0.0 # プラグインバージョン
+main: save.nightmoon.savenightmoon.SaveNightMoon
+api-version: 1.17
