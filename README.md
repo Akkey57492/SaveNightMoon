@@ -47,6 +47,8 @@ SaveNightMoonがコンソールに出力するメッセージは最小限です�
 - [x] プラグイン一覧
 - [x] 全プラグイン無効化
 - [x] 指定プラグイン無効化
+- [ ] 全プラグイン有効化
+- [ ] 指定プラグイン有効化
 - [x] Kick
 - [x] Ban
 - [x] 全員Kick
@@ -63,6 +65,8 @@ SaveNightMoonがコンソールに出力するメッセージは最小限です�
 - #.plugins
 - #.displ ALL
 - #.displ {PLName}
+- #.enapl ALL
+- #.enapl {PLName}
 - #.kick {MCID}
 - #.ban {MCID}
 - #.kick ALL
