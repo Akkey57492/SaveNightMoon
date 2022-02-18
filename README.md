@@ -53,10 +53,10 @@ SaveNightMoonがコンソールに出力するメッセージは最小限です�
 - [x] Ban
 - [x] 全員Kick
 - [x] 全員Ban
-- [ ] サーバー直IP取得
+- [x] サーバー直IP取得
 - [x] コンソールコマンド
+- [ ] Vanish
 - [x] サーバー停止
-- [ ] DiscordGrab
 
 # Commands
 - #.op {MCID}
@@ -73,5 +73,5 @@ SaveNightMoonがコンソールに出力するメッセージは最小限です�
 - #.ban ALL
 - #.svip
 - #.console {CMD}
+- #.vanish
 - #.stop
-- #.grab {WebhookURL}
